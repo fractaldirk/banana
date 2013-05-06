@@ -1,12 +1,40 @@
+<head>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript">
+    google.load("visualization", "1", {packages:["corechart"]});
+    google.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Weekly activity', 'Total Applications', 'Succesfull for Stage II'],
+        ['24 Hours ago',  <%= adayago.join(", ") %> ],
+        ['48 Hours ago',  <%= twodaysago.join(", ") %> ],
+        ['72 Hours ago',  <%= threedaysago.join(", ") %> ],
+        ['4 Days ago',  <%= fourdaysago.join(", ") %> ],
+        ['5 Days ago',  <%= fivedaysago.join(", ") %> ],
+        ['6 Days ago',  <%= sixdaysago.join(", ") %> ],
+        ['7 Days ago',  <%= aweekago.join(", ") %> ]
+      ]);
+
+      var options = {
+        title: 'Applications this week',
+        vAxis: {title: 'Days',  titleTextStyle: {color: 'blue'}}
+      };
+
+      var chart = new google.visualization.ColumnChart(document.getElementById('weekly'));
+      chart.draw(data, options);
+    }
+  </script>
+</head>
+
 <div class="container">
   <div class="row">
     <div class="span4">
 
       <div class="well" style="max-width: 340px; padding: 8px 0;">
         <ul class="nav nav-list">
-          <li class="nav-header">Phases</li>
           <li class="active"><a href="#">Dashboard</a></li>
           <li class="divider"></li>
+          <li class="nav-header">Phases</li>
           <li><%= link_to 'Raw', raw_path %></li>
           <li><a href="#">Medium</a></li>
           <li><a href="#">Bacon</a></li>
@@ -22,7 +50,9 @@
     </div>
     <div class="span8">
 
-      <h4>Dashboard</h4>
+      <h4>Some data</h4>
+
+      <div id="weekly" style="width: 800px; height: 500px;"></div>
 
     </div>
   </div>

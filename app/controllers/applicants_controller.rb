@@ -47,7 +47,7 @@ class ApplicantsController < ApplicationController
         if @applicant.wall_post == true
           User.delay.share_application(current_user.id, applicant_url(@applicant))
         end
-        UserMailer.applicant_confirmation(@applicant).deliver
+        UserMailer.delay.applicant_confirmation(@applicant)
         format.html { redirect_to success_applicant_path(@applicant), notice: 'Applicant was successfully created.' }
         format.json { render json: @applicant, status: :created, location: @applicant }
       else
@@ -66,9 +66,9 @@ class ApplicantsController < ApplicationController
       if params[:raw_button]
         @applicant.update_attributes(params[:applicant])
           if @applicant.status == 2
-            UserMailer.applicant_next_stage(@applicant).deliver
+            UserMailer.delay.applicant_next_stage(@applicant)
           elsif @applicant.status == 99
-            UserMailer.applicant_rejected(@applicant).deliver
+            UserMailer.delay.applicant_rejected(@applicant)
           else
           end
           format.html { redirect_to raw_path, notice: 'Applicant was successfully updated.' }
