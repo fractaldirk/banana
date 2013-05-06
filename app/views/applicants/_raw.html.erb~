@@ -1,0 +1,28 @@
+<%- model_class = Applicant -%>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:motivation) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @raw_applicants.each do |applicant| %>
+      <tr>
+        <td><%= applicant.name %></td>
+        <td><%= link_to truncate(applicant.motivation, :length => 40), applicant_path(applicant) %></td>
+        <td><%= applicant.created_at.strftime("%d %B %Y") unless applicant.created_at.nil? %></td>
+        <td>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      applicant_path(applicant),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

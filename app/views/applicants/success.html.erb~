@@ -1,0 +1,11 @@
+<% content_for :head do %>
+  <%= tag :meta, property: "fb:app_id", content: "486210298118961" %>
+  <%= tag :meta, property: "og:type", content: "applicanto:job" %>
+  <%= tag :meta, property: "og:url", content: url_for(:action => 'info', :controller => 'applicants', :only_path => false, :protocol => 'http') %>
+  <%= tag :meta, property: "og:title", content: @applicant.job_title %>
+  <%= tag :meta, property: "og:image", content: "https://fbstatic-a.akamaihd.net/images/devsite/attachment_blank.png" %>
+  <meta HTTP-EQUIV="REFRESH" content="4; url=<%= url_for(:action => 'info', :controller => 'applicants', :only_path => false, :protocol => 'http') %>">
+<% end %>
+
+<p>Awesome job <%= current_user.name %>, your application has been successful. You will receive a facebook message shortly.</p>
+<p>You will be automatically redirected to the homepage.</p>

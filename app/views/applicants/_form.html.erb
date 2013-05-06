@@ -1,0 +1,72 @@
+<%= form_for @applicant, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field', :value => current_user.name %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :motivation, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :motivation, :class => 'text_area_custom' %>
+    </div>
+  </div>
+  <p>Inspire your friends by allowing Greenpeace to create a wall post. This will pop up in your activity log as "Applied at Greenpeace Belgium".</p>
+  <div class="control-group">
+    <%= f.label :wall_post, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :wall_post %>
+    </div>
+  </div>
+
+  <hr />
+  <h4>Hidden fields</h4>
+  <div class="control-group">
+    <%= f.label :job_title, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :job_title, :class => 'text_field', :value => "Street Recruiter" %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :email, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :email, :class => 'text_field', :value => current_user.email %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :username, "User Name", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :username, :class => 'text_field', :value => current_user.username %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :uid, "User FB ID", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :uid, :class => 'text_field', :value => current_user.uid %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :gender, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :gender, :class => 'text_field', :value => current_user.gender %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :location, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :location, :class => 'text_field', :value => current_user.location %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :status, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :status, :class => 'text_field', :value => 1 %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                applicants_path, :class => 'btn' %>
+  </div>
+<% end %>

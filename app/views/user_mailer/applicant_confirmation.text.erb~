@@ -1,0 +1,3 @@
+<%= @applicant.name %>,
+
+Thank you for your application.
